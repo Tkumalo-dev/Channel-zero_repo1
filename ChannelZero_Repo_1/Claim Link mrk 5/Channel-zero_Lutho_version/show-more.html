@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>More Info - Claim Link</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9f9;
+      color: #333;
+    }
+
+    .section {
+      min-height: 100vh;
+      background-size: cover;
+      background-position: center;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1;
+    }
+
+    .content {
+      position: relative;
+      z-index: 2;
+      max-width: 700px;
+      color: white;
+    }
+
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .content p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+    }
+
+    .back-btn {
+      margin-top: 30px;
+      padding: 12px 24px;
+      background-color: #ffffff;
+      color: #007BFF;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background-color 0.3s ease;
+      display: inline-block;
+    }
+
+    .back-btn:hover {
+      background-color: #e1eaff;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="info-section" class="section">
+    <div class="overlay"></div>
+    <div class="content">
+      <h1 id="title">Loading...</h1>
+      <p id="description">Please wait while we load the content.</p>
+      <a href="home-page.html" class="back-btn">← Back to Home</a>
+    </div>
+  </div>
+
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const section = params.get("section");
+
+    const data = {
+      "1": {
+        title: "How Sarah Recovered R1,200 in Forgotten UIF",
+        description: "Sarah, a single mom from Cape Town, had no idea that her previous employer had submitted UIF contributions she never claimed. With Claim Link, she simply entered her ID number and found out the money was still available. Within weeks, she had the funds deposited into her account.",
+        bg: "Images/image 18.png"
+      },
+      "2": {
+        title: "5 Places You Might Have Unclaimed Money",
+        description: "From pension funds to forgotten bank accounts, there are more places to check than you think. Our platform scans databases from financial institutions, old employers, and even insurance companies to find what's owed to you.",
+        bg: "Images/image 19.png"
+      },
+      "3": {
+        title: "Why You Should Check Every Year",
+        description: "Every year, millions of rands go unclaimed. People change jobs, addresses, and banks — and lose track of what's theirs. A yearly check-in with Claim Link helps you stay on top of unclaimed funds you didn’t know about.",
+        bg: "Images/image 20.png"
+      }
+    };
+
+    const sectionData = data[section] || {
+      title: "Content Not Found",
+      description: "Sorry, we couldn't find the requested story. Please go back and try again.",
+      bg: "Images/image 18.png"
+    };
+
+    document.getElementById("title").textContent = sectionData.title;
+    document.getElementById("description").textContent = sectionData.description;
+    document.getElementById("info-section").style.backgroundImage = `url('${sectionData.bg}')`;
+  </script>
+
+</body>
+</html>
