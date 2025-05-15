@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1e1e1e;
+  font-family: 'Poppins', sans-serif;
+}
+
+.container {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  background-color: #f0f2ff;
+  border-radius: 0; /* Removed border-radius for edge-to-edge look */
+  overflow: hidden;
+  box-shadow: none; /* Optional: remove shadow for fullscreen */
+}
+
+.left-section {
+  flex: 1;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #f0f2ff;
+}
+
+.left-section h2 {
+  margin-bottom: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: #1a1a1a;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login-form label {
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-form input {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  outline: none;
+}
+
+.login-form button {
+  padding: 10px;
+  background-color: #7881f5;
+  border: none;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.login-form button:hover {
+  background-color: #5a6de0;
+}
+
+.register-text {
+  font-size: 13px;
+  margin-top: 20px;
+}
+
+.register-text a {
+  font-weight: bold;
+  color: #1a1a1a;
+  text-decoration: none;
+}
+
+.social-icons {
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.social-icons img {
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.right-section {
+  flex: 1;
+  background-color: #c9c8f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+
+/* Optional: make image responsive if you're using one */
+.right-section img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+}
