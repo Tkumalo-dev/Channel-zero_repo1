@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             </form>
             <p class="register-text">
                 Don't have an account?
-                <a href="register.php">Register Now</a>
+                <a href="signup.php">Signup Here</a>
             </p>
             <div class="social-icons">
                 <img src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/facebook.svg" alt="Facebook">
