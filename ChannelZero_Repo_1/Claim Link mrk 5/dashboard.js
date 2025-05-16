@@ -47,9 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Add active class to the clicked link's parent li
             this.parentElement.classList.add('active');
 
-            // If not building an SPA, prevent default link behavior
-            // or load the corresponding page if these were real links.
-             e.preventDefault();
+        
              console.log(`Maps to: ${this.textContent.trim()}`);
         });
     });

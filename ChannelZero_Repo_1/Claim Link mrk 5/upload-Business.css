@@ -1,0 +1,330 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+}
+
+:root {
+  --primary-color: #0d92f4;
+  --secondary-color: #ffffff;
+  --error-color: #ff4444;
+  --success-color: #00c851;
+  --hover-color: rgba(255, 255, 255, 0.1);
+  --border-radius: 15px;
+  --transition: all 0.3s ease;
+}
+
+body {
+  background-color: var(--secondary-color);
+  color: var(--secondary-color);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  line-height: 1.6;
+  background-image: url("upload-business_background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.container {
+  width: 100%;
+  max-width: 800px;
+  padding: 2.5rem;
+  background-color: rgba(13, 146, 244, 0.95);
+  border-radius: var(--border-radius);
+  box-shadow: 0 8px 24px rgba(255, 255, 255, 0.15);
+}
+
+.logo-title {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.logo {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border: 2px solid var(--secondary-color);
+  font-size: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-radius: var(--border-radius);
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: var(--secondary-color);
+  font-weight: 700;
+}
+
+.subtitle {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.1rem;
+}
+
+.upload-area {
+  border: 2px dashed var(--secondary-color);
+  border-radius: var(--border-radius);
+  padding: 2.5rem;
+  text-align: center;
+  cursor: pointer;
+  margin-bottom: 2rem;
+  position: relative;
+  transition: var(--transition);
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.upload-area:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+.upload-area.drag-over {
+  background-color: rgba(255, 255, 255, 0.2);
+  border-style: solid;
+  transform: scale(1.02);
+}
+
+.upload-icon {
+  width: 64px;
+  height: 64px;
+  margin-bottom: 1.5rem;
+  opacity: 0.8;
+  transition: var(--transition);
+}
+
+.upload-area:hover .upload-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.upload-area span {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--secondary-color);
+  margin-bottom: 0.5rem;
+}
+
+.remove-file {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: var(--secondary-color);
+  font-size: 1.5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: var(--transition);
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-file:hover {
+  background-color: var(--hover-color);
+  transform: rotate(90deg);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+input[type="text"],
+input[type="email"] {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  border-radius: var(--border-radius);
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--secondary-color);
+  font-size: 1rem;
+  transition: var(--transition);
+}
+
+/* Make placeholders white */
+input::placeholder {
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.8;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus {
+  outline: none;
+  border-color: var(--secondary-color);
+  background-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.1);
+}
+
+.error-message {
+  color: var(--error-color);
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: none;
+  animation: fadeIn 0.3s ease;
+  padding: 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(255, 68, 68, 0.1);
+}
+
+.form-actions {
+  display: flex;
+  gap: 1rem;
+  margin: 2rem 0;
+}
+
+.primary-btn,
+.secondary-btn {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  font-size: 1rem;
+  flex: 1;
+  transition: var(--transition);
+  font-weight: 600;
+}
+
+.primary-btn {
+  background-color: var(--secondary-color);
+  color: var(--primary-color);
+}
+
+.primary-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+}
+
+.secondary-btn {
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  color: var(--secondary-color);
+}
+
+.secondary-btn:hover {
+  background-color: var(--hover-color);
+  transform: translateY(-2px);
+}
+
+.consent-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+}
+
+.consent-checkbox input[type="checkbox"] {
+  margin-top: 0.25rem;
+  width: 18px;
+  height: 18px;
+  accent-color: var(--secondary-color);
+}
+
+.consent-checkbox label {
+  font-size: 0.95rem;
+  color: rgba(255, 255, 255, 0.9);
+  line-height: 1.5;
+}
+
+.tracking-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--border-radius);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tracking-section h2 {
+  color: var(--secondary-color);
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.tracking-section p {
+  margin-bottom: 0.5rem;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.tracking-section span {
+  font-weight: 600;
+  color: var(--secondary-color);
+}
+
+.hidden {
+  display: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 1.5rem;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .upload-area {
+    padding: 1.5rem;
+  }
+
+  .logo {
+    padding: 0.5rem 1rem;
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .logo {
+    font-size: 1.1rem;
+  }
+
+  .subtitle {
+    font-size: 0.9rem;
+  }
+
+  .upload-area {
+    padding: 1rem;
+  }
+
+  .upload-icon {
+    width: 48px;
+    height: 48px;
+  }
+}
