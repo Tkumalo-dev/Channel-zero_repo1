@@ -150,6 +150,8 @@ body.light-mode {
     font-size: 1.1em;
 }
 
+
+
 .sidebar-nav a:hover {
     background-color: var(--button-hover-bg);
     color: var(--text-primary);
@@ -420,6 +422,15 @@ body.light-mode {
     transform: rotate(90deg);
     color: var(--text-secondary);
 }
+
+.sidebar {
+  height: 100vh; /* Full viewport height */
+  overflow-y: auto; /* Enable vertical scroll if needed */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 
 .card-number {
     font-family: 'Courier New', Courier, monospace;
