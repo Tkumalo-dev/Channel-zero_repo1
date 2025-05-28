@@ -1,0 +1,150 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, Arial, sans-serif;
+  margin: 2rem;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.5;
+}
+
+.settings-header {
+  max-width: 500px;
+  margin: 0 auto 2rem auto;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #007BFF;
+  text-align: center;
+}
+
+.settings-header h1 {
+  font-weight: 700;
+  font-size: 2.2rem;
+  color: #007BFF;
+  margin: 0;
+}
+
+/* Main settings container */
+.settings-section {
+  background: #fff;
+  padding: 2rem 2.5rem;
+  border-radius: 10px;
+  max-width: 500px;
+  margin: 1.5rem auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: 
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+  cursor: pointer;
+}
+
+.settings-section:hover {
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  transform: translateY(-6px);
+}
+
+h2 {
+  margin-bottom: 1.25rem;
+  font-weight: 600;
+  color: #222;
+  font-size: 1.5rem;
+  user-select: none;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+  margin-right: 0.5rem;
+  transform: scale(1.2);
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+button {
+  display: inline-block;
+  margin-top: 1.25rem;
+  padding: 0.6rem 1.4rem;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+button:hover,
+button:focus {
+  background-color: #0056b3;
+  outline: none;
+}
+
+.back-button {
+  display: inline-block;
+  margin-bottom: 2rem;
+  text-decoration: none;
+  color: #007BFF;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.back-button:hover,
+.back-button:focus {
+  color: #0056b3;
+  outline: none;
+}
+
+/* Additional classes for custom buttons */
+
+.btn-deactivate {
+  background-color: #dc3545;
+}
+
+.btn-deactivate:hover,
+.btn-deactivate:focus {
+  background-color: #a71d2a;
+}
+
+.btn-download {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  background-color: #28a745;
+  color: white;
+  font-weight: 600;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.25s ease;
+}
+
+.btn-download:hover,
+.btn-download:focus {
+  background-color: #1e7e34;
+  outline: none;
+}
+
+/* Responsive for smaller screens */
+@media (max-width: 540px) {
+  body {
+    margin: 1rem;
+  }
+  .settings-section {
+    padding: 1.5rem 1.5rem;
+    max-width: 100%;
+    margin: 1rem auto;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  button,
+  .btn-download {
+    width: 100%;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+  }
+}

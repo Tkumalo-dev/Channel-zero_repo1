@@ -15,22 +15,21 @@ body {
 /* CSS Variables for Theming */
 :root {
     /* Dark Mode Colors (Default) */
-    --bg-primary-dark: #1a1d21;         /* Overall background */
-    --bg-secondary-dark: #252a31;       /* Card backgrounds */
-    --sidebar-bg-dark: #1f2328;         /* Sidebar background */
-    --text-primary-dark: #e0e0e0;       /* Main text color */
-    --text-secondary-dark: #a0a0a0;     /* Lighter text/icons */
-    --accent-color-dark: #007bff;       /* Accent color (e.g., active items) */
-    --card-accent-bg-dark: #f8e6a0;     /* Yellowish card background */
-    --card-accent-text-dark: #333;     /* Text on yellowish card */
-    --border-color-dark: #3a3f47;       /* Subtle borders */
+    --bg-primary-dark: #1a1d21;
+    --bg-secondary-dark: #252a31;
+    --sidebar-bg-dark: #1f2328;
+    --text-primary-dark: #e0e0e0;
+    --text-secondary-dark: #a0a0a0;
+    --accent-color-dark: #007bff;
+    --card-accent-bg-dark: #f8e6a0;
+    --card-accent-text-dark: #333;
+    --border-color-dark: #3a3f47;
     --button-bg-dark: #3a3f47;
     --button-text-dark: #e0e0e0;
     --button-hover-bg-dark: #4a4f57;
     --active-link-bg-dark: #3a3f47;
     --theme-button-active-bg-dark: #555;
     --theme-button-inactive-bg-dark: #333;
-
 
     /* Light Mode Colors */
     --bg-primary-light: #f4f7fc;
@@ -50,13 +49,11 @@ body {
     --theme-button-inactive-bg-light: #eee;
 }
 
-/* Apply Theme Variables */
 body {
     background-color: var(--bg-primary);
     color: var(--text-primary);
 }
 
-/* Theme Class Assignment (using JS) */
 body.dark-mode {
     --bg-primary: var(--bg-primary-dark);
     --bg-secondary: var(--bg-secondary-dark);
@@ -92,7 +89,6 @@ body.light-mode {
     --theme-button-active-bg: var(--theme-button-active-bg-light);
     --theme-button-inactive-bg: var(--theme-button-inactive-bg-light);
 }
-
 
 /* Dashboard Layout */
 .dashboard-container {
@@ -528,4 +524,53 @@ body.light-mode {
 /* Placeholder Images */
 .map-placeholder img, .graph-placeholder img {
     opacity: 0.6; /* Make placeholder images less prominent */
+}
+
+.sidebar {
+  width: 250px; /* or your custom width */
+  background-color: #1a1d21; /* dark mode background */
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+/* WebKit browsers scrollbar */
+.sidebar::-webkit-scrollbar {
+    width: 10px; /* Width of scrollbar */
+}
+
+.sidebar::-webkit-scrollbar-track {
+    background: #2a2e35; /* Slightly lighter grey for track */
+    border-radius: 8px;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+    background-color: #555; /* Medium grey */
+    border-radius: 8px;
+    border: 2px solid #2a2e35; /* Padding around thumb */
+}
+
+.sidebar::-webkit-scrollbar-thumb:hover {
+    background-color: #777; /* Lighter grey on hover */
+}
+
+/* Firefox scrollbar */
+.sidebar {
+    scrollbar-width: thin;
+    scrollbar-color: #555 #2a2e35;
+}
+
+.logout-btn {
+  display: block;
+  margin: 20px auto; /* Adds top & bottom spacing and centers horizontally */
+  padding: 10px 20px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
 }

@@ -5,10 +5,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Function to set the theme
     const setTheme = (theme) => {
-        body.classList.remove('light-mode', 'dark-mode'); // Remove existing theme classes
-        body.classList.add(theme + '-mode'); // Add the new theme class
+        body.classList.remove('light-mode', 'dark-mode');
+        body.classList.add(`${theme}-mode`);
 
-        // Update button active states
+        // Update button states
         if (theme === 'light') {
             lightModeBtn.classList.add('active');
             darkModeBtn.classList.remove('active');
@@ -17,41 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
             lightModeBtn.classList.remove('active');
         }
 
-        // Optional: Save theme preference to local storage
+        // Save to local storage
         localStorage.setItem('dashboardTheme', theme);
     };
 
-    // Event Listeners for theme buttons
+    // Load saved or default theme
+    const savedTheme = localStorage.getItem('dashboardTheme');
+    if (savedTheme) {
+        setTheme(savedTheme);
+    } else {
+        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+        setTheme(prefersDark ? 'dark' : 'light');
+    }
+
+    // Event Listeners
     lightModeBtn.addEventListener('click', () => setTheme('light'));
     darkModeBtn.addEventListener('click', () => setTheme('dark'));
 
-    // Optional: Load saved theme preference on page load
-    const savedTheme = localStorage.getItem('dashboardTheme');
-    if (savedTheme) {
-        setTheme(savedTheme); // Apply saved theme
-    } else {
-        // Optional: Check system preference if no theme is saved
-        const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(prefersDark ? 'dark' : 'light');
-        // Or just default to dark as per the initial class on body
-        // setTheme('dark');
-    }
-
-    // --- Add other dashboard interactivity here ---
-    // Example: Handle navigation link clicks (if building a Single Page App)
+    // Navigation highlighting
     const navLinks = document.querySelectorAll('.sidebar-nav a');
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
-            // Remove active class from all links
             navLinks.forEach(l => l.parentElement.classList.remove('active'));
-            // Add active class to the clicked link's parent li
             this.parentElement.classList.add('active');
-
-            // If not building an SPA, prevent default link behavior
-            // or load the corresponding page if these were real links.
-             e.preventDefault();
-             console.log(`Maps to: ${this.textContent.trim()}`);
+            e.preventDefault();
+            console.log(`Maps to: ${this.textContent.trim()}`);
         });
     });
-
 });

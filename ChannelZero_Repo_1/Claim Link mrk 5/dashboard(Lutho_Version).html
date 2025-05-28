@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Channel Zero - Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="dashboard(Lutho_Version).css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -31,27 +31,31 @@
         <nav class="sidebar-nav">
           <ul>
             <li class="active">
-              <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+              <a href="home-page.html"><i class="fas fa-home"></i>Home</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-file-alt"></i> My Application</a>
             </li>
             <li>
-              <a href="#"><i class="fas fa-tasks"></i> Status Updates</a>
-            </li>
-            <li>
-              <a href="#"><i class="fas fa-user"></i> My Details</a>
+              <a href="profile.html"><i class="fas fa-user"></i>Profile</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-history"></i> Claim History</a>
+            </li>
+            <li>
+              <a href="#" id="map-nav-link"><i class="fas fa-map"></i> Map</a>
             </li>
             <!-- Replaced the "Support" button with "Search" and linked to search.html -->
             <li>
               <a href="search.html"><i class="fas fa-search"></i> Search</a>
             </li>
             <li>
-              <a href="#"><i class="fas fa-cog"></i> Settings</a>
+              <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
             </li>
+            <button class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i> Log Out
+              </button>
+            
           </ul>
         </nav>
         <div class="sidebar-bottom">
@@ -87,7 +91,7 @@
           </div>
           <div class="header-icons">
             <i class="fas fa-bell"></i>
-            <i class="fas fa-cog"></i>
+            <a href="settings.html"><i class="fas fa-cog"></i></a>
           </div>
         </header>
 
@@ -101,14 +105,14 @@
           </div>
           <div class="action-icons">
             <i class="fas fa-filter"></i>
-            <i class="fas fa-search"></i>
+            <a href="search.html"><i class="fas fa-search"></i></a>
           </div>
         </div>
 
         <div class="content-grid">
           <div class="card map-card">
-            <h4>ATMs On The Map</h4>
-            <p>We found 24 ATM</p>
+            <h4>Branches near you</h4>
+            <p>We found 24 branches</p>
             <!-- Replace with dynamic count -->
             <div class="map-placeholder">
               <img src="placeholder-map.png" alt="Map Placeholder" />
