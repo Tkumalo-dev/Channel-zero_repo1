@@ -1,0 +1,20 @@
+vendor/
+vendor/
+client_secret_*.json
+client_secret_*.json
+
+# Environment and secrets
+*.env
+
+# Dependency directories
+/vendor/
+node_modules/
+
+# Logs, cache, and backups
+*.log
+*.bak
+*.tmp
+
+# IDE/editor settings
+.vscode/
+.idea/google.env

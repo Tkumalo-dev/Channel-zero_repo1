@@ -33,7 +33,7 @@ body {
 /* Sidebar styles */
 .sidebar {
   width: 250px;
-  background-color: var(--dark-color);
+  background-color: var(--secondary-color);
   color: white;
   height: 100%;
   box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
@@ -74,7 +74,7 @@ body {
   display: flex;
   align-items: center;
   padding: 12px 20px;
-  color: #b8c7ce;
+  color: #f1f1f1;
   text-decoration: none;
   transition: var(--transition);
 }
@@ -702,8 +702,53 @@ table tr:hover {
 }
 
 @media (max-width: 768px) {
-  .dashboard-summary {
-    grid-template-columns: 1fr;
+  .admin-container {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    height: 100vh;
+    overflow-y: auto;
+    transition: left var(--transition) ease;
+    z-index: 1000;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .sidebar.sidebar-open {
+    left: 0;
+  }
+
+  .logo {
+    justify-content: flex-start;
+  }
+
+  .nav-menu li a {
+    justify-content: flex-start;
+    padding: 12px 15px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    padding-top: 70px;
+  }
+
+  .overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+
+  body.sidebar-open .overlay {
+    display: block;
   }
 
   .header {

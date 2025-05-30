@@ -5,7 +5,6 @@ $error = '';
 $success = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Get all form data
     $firstName = $_POST['first-name'] ?? '';
     $middleName = $_POST['middle-name'] ?? '';
     $lastName = $_POST['last-name'] ?? '';
@@ -14,14 +13,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nationality = $_POST['nationality'] ?? '';
     $idNumber = $_POST['id-number'] ?? '';
     $email = $_POST['email'] ?? '';
-    $username = $_POST['username'] ?? '';
-    $password = $_POST['password'] ?? '';
-    $confirmPassword = $_POST['confirm-password'] ?? '';
+    $mobile = $_POST['mobile'] ?? '';
+    $street = $_POST['street'] ?? '';
+    $city = $_POST['city'] ?? '';
+    $province = $_POST['province'] ?? '';
+    $postalCode = $_POST['postal-code'] ?? '';
+    $country = $_POST['country'] ?? '';
+    $alternateContact = $_POST['alternate-contact'] ?? '';
     $kinName = $_POST['kinName'] ?? '';
     $kinRelationship = $_POST['kinRelationship'] ?? '';
     $kinPhone = $_POST['kinPhone'] ?? '';
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    $confirmPassword = $_POST['confirm-password'] ?? '';
 
-    // Validate required fields
     if (empty($firstName) || empty($lastName) || empty($username) || empty($password) || empty($confirmPassword)) {
         $error = 'Please fill in all required fields';
     } elseif ($password !== $confirmPassword) {
@@ -29,173 +34,158 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (strlen($password) < 8) {
         $error = 'Password must be at least 8 characters long';
     } else {
-        // Here you would typically:
-        // 1. Hash the password
-        // 2. Store user data in database
-        // 3. Send confirmation email
-        // For now, we'll just redirect to login page
-        $success = 'Registration successful! Redirecting to login...';
+        // Insert into registration_details
+        $conn = new mysqli("localhost", "root", "", "channel_zero");
+
+        if ($conn->connect_error) {
+            $error = "Connection failed: " . $conn->connect_error;
+        } else {
+            $stmt = $conn->prepare("INSERT INTO registration_details (
+                username, first_name, middle_name, last_name, dob, gender, nationality, id_number,
+                email, mobile, street, city, province, postal_code, country, alternate_contact,
+                kin_name, kin_relationship, kin_phone
+            ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+            $stmt->bind_param("sssssssssssssssssss",
+                $username, $firstName, $middleName, $lastName, $dob, $gender, $nationality, $idNumber,
+                $email, $mobile, $street, $city, $province, $postalCode, $country, $alternateContact,
+                $kinName, $kinRelationship, $kinPhone
+            );
+
+            if ($stmt->execute()) {
+                $success = 'Registration successful! Redirecting to login...';
+            } else {
+                $error = 'Database error: ' . $stmt->error;
+            }
+
+            $stmt->close();
+            $conn->close();
+        }
     }
 }
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <link rel="stylesheet" href="Register.css">
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Registration Page</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="left-section">
+</head>
+<body>
+<div class="container">
+    <div class="left-section">
         <h2>Registration Form</h2>
+
+        <?php if ($error): ?>
+            <div style="color: red;"><?php echo $error; ?></div>
+        <?php endif; ?>
+
         <?php if ($success): ?>
-            <div class="success-message"><?php echo $success; ?></div>
+            <div style="color: green;"><?php echo $success; ?></div>
             <script>
-                setTimeout(function() {
+                setTimeout(function () {
                     window.location.href = 'login.php';
-                }, 4000); // Redirect after 4 seconds
+                }, 4000);
             </script>
         <?php endif; ?>
-        <form class="registration-form">
-          <!-- Basic Personal Information -->
-          <h3>Basic Personal Information</h3>
 
-          <label for="first-name">First Name:</label>
-          <input
-            type="text"
-            id="first-name"
-            placeholder="Enter first name"
-            required
-          />
+        <form class="registration-form" method="POST" action="">
+            <!-- Basic Info -->
+            <h3>Basic Personal Information</h3>
 
-          <label for="middle-name">Middle Name:</label>
-          <input type="text" id="middle-name" placeholder="Enter middle name" />
+            <label>First Name:</label>
+            <input type="text" name="first-name" required />
 
-          <label for="last-name">Last Name:</label>
-          <input
-            type="text"
-            id="last-name"
-            placeholder="Enter last name"
-            required
-          />
+            <label>Middle Name:</label>
+            <input type="text" name="middle-name" />
 
-          <label for="dob">Date of Birth:</label>
-          <input type="date" id="dob" />
+            <label>Last Name:</label>
+            <input type="text" name="last-name" required />
 
-          <label for="gender">Gender:</label>
-          <select id="gender">
-            <option value="male">Male</option>
-            <option value="female">Female</option>
-            <option value="other">Other</option>
-          </select>
+            <label>Date of Birth:</label>
+            <input type="date" name="dob" />
 
-          <label for="nationality">Nationality/Citizenship:</label>
-          <input type="text" id="nationality" placeholder="Enter nationality" />
+            <label>Gender:</label>
+            <select name="gender">
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+                <option value="other">Other</option>
+            </select>
 
-          <label for="id-number">Government ID Number:</label>
-          <input type="text" id="id-number" placeholder="Enter ID number" />
+            <label>Nationality:</label>
+            <input type="text" name="nationality" />
 
-          <!-- Contact Details -->
-          <h3>Contact Details</h3>
+            <label>ID Number:</label>
+            <input type="text" name="id-number" />
 
-          <label for="email">Email Address:</label>
-          <input type="email" id="email" placeholder="Enter email" />
+            <!-- Contact Details -->
+            <h3>Contact Details</h3>
 
-          <label for="mobile">Mobile Number:</label>
-          <input type="tel" id="mobile" placeholder="Enter mobile number" />
+            <label>Email Address:</label>
+            <input type="email" name="email" />
 
-          <label for="street">Street Address:</label>
-          <input type="text" id="street" placeholder="Enter street address" />
+            <label>Mobile Number:</label>
+            <input type="tel" name="mobile" />
 
-          <label for="city">City:</label>
-          <input type="text" id="city" placeholder="Enter city" />
+            <label>Street Address:</label>
+            <input type="text" name="street" />
 
-          <label for="province">Province:</label>
-          <select id="province">
-            <option value="">Select Province</option>
-            <option value="EC">Eastern Cape</option>
-            <option value="FS">Free State</option>
-            <option value="GP">Gauteng</option>
-            <option value="KZN">KwaZulu-Natal</option>
-            <option value="LP">Limpopo</option>
-            <option value="MP">Mpumalanga</option>
-            <option value="NC">Northern Cape</option>
-            <option value="NW">North West</option>
-            <option value="WC">Western Cape</option>
-          </select>
+            <label>City:</label>
+            <input type="text" name="city" />
 
-          <label for="postal-code">Postal Code:</label>
-          <input type="text" id="postal-code" placeholder="Enter postal code" />
+            <label>Province:</label>
+            <select name="province">
+                <option value="">Select Province</option>
+                <option value="EC">Eastern Cape</option>
+                <option value="FS">Free State</option>
+                <option value="GP">Gauteng</option>
+                <option value="KZN">KwaZulu-Natal</option>
+                <option value="LP">Limpopo</option>
+                <option value="MP">Mpumalanga</option>
+                <option value="NC">Northern Cape</option>
+                <option value="NW">North West</option>
+                <option value="WC">Western Cape</option>
+            </select>
 
-          <label for="country">Country:</label>
-          <input type="text" id="country" placeholder="Enter country" />
+            <label>Postal Code:</label>
+            <input type="text" name="postal-code" />
 
-          <label for="alternate-contact">Alternate Contact (optional):</label>
-          <input
-            type="text"
-            id="alternate-contact"
-            placeholder="For emergency contacts"
-          />
+            <label>Country:</label>
+            <input type="text" name="country" />
 
-          <!-- Next of Kin Information -->
-          <h3>Next of Kin Details</h3>
-          <label for="kinName">Full Name:</label>
-          <input
-            type="text"
-            id="kinName"
-            placeholder="Next of kin's full name"
-          />
+            <label>Alternate Contact (optional):</label>
+            <input type="text" name="alternate-contact" />
 
-          <label for="kinRelationship">Relationship:</label>
-          <input
-            type="text"
-            id="kinRelationship"
-            placeholder="E.g. Mother, Father, Spouse"
-          />
+            <!-- Next of Kin -->
+            <h3>Next of Kin Details</h3>
 
-          <label for="kinPhone">Phone Number:</label>
-          <input
-            type="tel"
-            id="kinPhone"
-            placeholder="Next of kin's phone number"
-          />
+            <label>Full Name:</label>
+            <input type="text" name="kinName" />
 
-          <!-- Authentication & Security -->
-          <h3>Authentication & Security</h3>
+            <label>Relationship:</label>
+            <input type="text" name="kinRelationship" />
 
-          <label for="username">Username:</label>
-          <input
-            type="text" id="username" placeholder="Choose a username"required />
+            <label>Phone Number:</label>
+            <input type="tel" name="kinPhone" />
 
-          <label for="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Create a strong password"
-            required
-          />
-          <small
-            >Password must contain at least 8 characters, including uppercase,
-            lowercase, numbers and special characters</small
-          >
+            <!-- Security -->
+            <h3>Authentication & Security</h3>
 
-          <label for="confirm-password">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirm-password"
-            placeholder="Re-enter your password"
-            required
-          />
+            <label>Username:</label>
+            <input type="text" name="username" required />
 
-          <button type="submit">Register</button>
+            <label>Password:</label>
+            <input type="password" name="password" required />
+
+            <label>Confirm Password:</label>
+            <input type="password" name="confirm-password" required />
+
+            <button type="submit">Register</button>
         </form>
-        <p class="login-text">
-          Already have an account?
-          <a href="login.php">Login Here</a>
-        </p>
-      </div>
+
+        <p>Already have an account? <a href="login.php">Login Here</a></p>
     </div>
-  </body>
+</div>
+</body>
 </html>
