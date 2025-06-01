@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Channel Zero - Dashboard</title>
-    <link rel="stylesheet" href="dashboard(Lutho_Version).css" />
+    <link rel="stylesheet" href="dashboard.css" />
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
@@ -31,45 +31,37 @@
         <nav class="sidebar-nav">
           <ul>
             <li class="active">
-              <a href="home-page.html"><i class="fas fa-home"></i>Home</a>
+              <a href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-file-alt"></i> My Application</a>
             </li>
             <li>
-              <a href="profile.html"><i class="fas fa-user"></i>Profile</a>
+              <a href="#"><i class="fas fa-tasks"></i> Status Updates</a>
+            </li>
+            <li>
+              <a href="#"><i class="fas fa-user"></i> My Details</a>
             </li>
             <li>
               <a href="#"><i class="fas fa-history"></i> Claim History</a>
             </li>
+            <!-- Sidebar search icon links to search.html -->
+            <li>
+              <a href="search.php"><i class="fas fa-search"></i> Search</a>
+            </li>
             <li>
               <a href="#" id="map-nav-link"><i class="fas fa-map"></i> Map</a>
             </li>
-            <!-- Replaced the "Support" button with "Search" and linked to search.html -->
+
             <li>
-              <a href="search.html"><i class="fas fa-search"></i> Search</a>
+              <a href="#"><i class="fas fa-cog"></i> Settings</a>
             </li>
-            <li>
-              <a href="settings.html"><i class="fas fa-cog"></i> Settings</a>
-            </li>
-            <button class="logout-btn">
-                <i class="fas fa-sign-out-alt"></i> Log Out
-              </button>
-            
           </ul>
         </nav>
         <div class="sidebar-bottom">
           <div class="balance-info">
             <span>R315,00</span> <i class="fas fa-wallet"></i>
             <small>Last Updated Yesterday</small>
-          </div>
-          <div class="theme-switcher">
-            <button id="light-mode-btn" title="Light Mode">
-              <i class="fas fa-sun"></i> Light
-            </button>
-            <button id="dark-mode-btn" class="active" title="Dark Mode">
-              <i class="fas fa-moon"></i> Dark
-            </button>
           </div>
         </div>
       </aside>
@@ -82,16 +74,14 @@
               alt="User Avatar"
               class="user-avatar"
             />
-            <!-- Replace with actual avatar -->
             <div>
               <span>Welcome Back!</span>
               <h3>Mila Hlungulu</h3>
-              <!-- Replace with dynamic user name -->
             </div>
           </div>
           <div class="header-icons">
             <i class="fas fa-bell"></i>
-            <a href="settings.html"><i class="fas fa-cog"></i></a>
+            <i class="fas fa-cog"></i>
           </div>
         </header>
 
@@ -101,91 +91,154 @@
           </button>
           <div class="date-range">
             <i class="fas fa-calendar-alt"></i> 11 Nov - 11 Dec, 2026
-            <!-- Replace with dynamic date -->
           </div>
           <div class="action-icons">
             <i class="fas fa-filter"></i>
-            <a href="search.html"><i class="fas fa-search"></i></a>
+            <a href="search.php"><i class="fas fa-search"></i></a>
           </div>
         </div>
 
-        <div class="content-grid">
-          <div class="card map-card">
-            <h4>Branches near you</h4>
-            <p>We found 24 branches</p>
-            <!-- Replace with dynamic count -->
-            <div class="map-placeholder">
-              <img src="placeholder-map.png" alt="Map Placeholder" />
-              <!-- Placeholder Image -->
-            </div>
-          </div>
-
-          <div class="card card-details">
-            <div class="bank-name">
-              <span>Gauteng Bank</span>
-            </div>
-            <img
-              src="chip.png"
-              alt="credit card chip"
-              style="width: 50px; height: 50px"
-            /><br /><br />
-            <div class="card-chip">
-              <i class="fas fa-wifi"></i>
-            </div>
-
-            <div class="card-number">12345678910 XXXX</div>
-
-            <div class="card-holder-info">
-              <small>Card Holder</small>
-              <span>Mila Hlungulu</span>
-            </div>
-
-            <div class="card-expiry">
-              <small>Valid Thru</small>
-              <span>12 / 27</span>
-            </div>
-
-            <i class="fa-brands fa-cc-mastercard"></i>
-          </div>
-
-          <div class="card total-funds-card">
-            <h5>Total Funds Claimed</h5>
-            <h2>R9.385.34</h2>
-            <!-- Replace with dynamic amount -->
-            <div class="fund-icons">
-              <span class="fund-icon"><i class="fas fa-university"></i></span>
-              <span class="fund-icon"><i class="fas fa-piggy-bank"></i></span>
-              <span class="fund-icon"><i class="fas fa-chart-line"></i></span>
-              <span class="fund-icon"><i class="fas fa-file-invoice-dollar"></i></span>
-            </div>
-          </div>
-
-          <div class="card timeline-card">
-            <h4>Claim Timeline</h4>
-            <div class="timeline-controls">
-              <!-- Add filter/zoom icons if needed -->
-              <i class="fas fa-chart-bar"></i>
-              <i class="fas fa-search-plus"></i>
-            </div>
-            <div class="graph-placeholder">
-              <img
-                src="placeholder-graph.png"
-                alt="Timeline Graph Placeholder"
-              />
-              <!-- Placeholder Image -->
-              <!-- Or use a Charting library like Chart.js -->
-              <div class="timeline-info">
-                <span>$300.00</span> <!-- Example range start -->
-                <!-- Add month labels -->
+        <!-- Dashboard Content -->
+        <div id="dashboard-content" class="content-section">
+          <div class="content-grid">
+            <div class="card card-details">
+              <div class="bank-name">
+                <span>Gauteng Bank</span>
               </div>
+              <img
+                src="chip.png"
+                alt="credit card chip"
+                style="width: 50px; height: 50px"
+              /><br /><br />
+              <div class="card-chip">
+                <i class="fas fa-wifi"></i>
+              </div>
+
+              <div class="card-number">12345678910 XXXX</div>
+
+              <div class="card-holder-info">
+                <small>Card Holder</small>
+                <span>Mila Hlungulu</span>
+              </div>
+
+              <div class="card-expiry">
+                <small>Valid Thru</small>
+                <span>12 / 27</span>
+              </div>
+
+              <i class="fa-brands fa-cc-mastercard"></i>
+            </div>
+
+            <div class="card total-funds-card">
+              <h5>Total Funds Claimed</h5>
+              <h2>R9.385.34</h2>
+              <div class="fund-icons">
+                <span class="fund-icon"><i class="fas fa-university"></i></span>
+                <span class="fund-icon"><i class="fas fa-piggy-bank"></i></span>
+                <span class="fund-icon"><i class="fas fa-chart-line"></i></span>
+                <span class="fund-icon"
+                  ><i class="fas fa-file-invoice-dollar"></i
+                ></span>
+              </div>
+            </div>
+
+            <div class="card timeline-card">
+              <h4>Claim Timeline</h4>
+              <div class="timeline-controls">
+                <i class="fas fa-chart-bar"></i>
+                <i class="fas fa-search-plus"></i>
+              </div>
+              <div class="graph-placeholder">
+                <img
+                  src="placeholder-graph.png"
+                  alt="Timeline Graph Placeholder"
+                />
+                <div class="timeline-info">
+                  <span>$300.00</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Map Content Section -->
+        <div id="map-content" class="content-section" style="display: none">
+          <div class="card full-width-card">
+            <h4>ATMs On The Map</h4>
+            <p>We found <span id="atm-count">24</span> ATM</p>
+            <div
+              class="map-placeholder"
+              style="position: relative; height: 500px"
+            >
+              <img
+                src="placeholder-map.png"
+                alt="Map Placeholder"
+                style="width: 100%; height: 100%; object-fit: cover"
+              />
+              <button
+                style="
+                  position: absolute;
+                  right: 20px;
+                  top: 20px;
+                  background: #2e86de;
+                  color: white;
+                  border: none;
+                  padding: 10px 15px;
+                  border-radius: 6px;
+                  cursor: pointer;
+                  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+                  font-weight: bold;
+                "
+              >
+                Filters
+              </button>
             </div>
           </div>
         </div>
       </main>
     </div>
 
+    <!-- Add New Modal -->
+    <div
+      id="addNewModal"
+      class="modal"
+      style="
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      "
+    >
+      <div
+        style="
+          background: #fff;
+          padding: 20px;
+          border-radius: 8px;
+          max-width: 400px;
+          width: 90%;
+        "
+      >
+        <h3>Add New Claim</h3>
+        <textarea
+          id="newClaimText"
+          rows="4"
+          style="width: 100%"
+          placeholder="Enter claim details here..."
+        ></textarea>
+        <div style="margin-top: 15px; text-align: right">
+          <button id="cancelAddNew">Cancel</button>
+          <button id="submitAddNew">Submit</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- JavaScript Files -->
+    <script src="dashboard(Lutho_Version).js"></script>
     <script src="search.js"></script>
   </body>
 </html>
-
-
